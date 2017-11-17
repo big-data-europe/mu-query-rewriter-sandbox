@@ -4,8 +4,8 @@ var button = document.getElementById('rewrite');
 var runButton = document.getElementById('run');
 var applyButton = document.getElementById('apply');
 var applyMessage = document.getElementById('apply-message');
-var generateButton = document.getElementById('generate');
-var generateMessage = document.getElementById('generate-message');
+// var generateButton = document.getElementById('generate');
+// var generateMessage = document.getElementById('generate-message');
 var previewLink =  document.getElementById('preview');
 var query = document.getElementById('query');
 var readConstraint = document.getElementById('read-constraint');
@@ -176,36 +176,36 @@ applyButton.onclick = function(){
                  + "&authorization-insert=" + authorizationInsert.value);
 };
 
-generateButton.onclick = function(){
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function(e) {
-	if(request.readyState === 4) {
-            result.className = '';
-	    results.value = '';
-            resultsPanel.style.display = "none";
-            annotations.innerHTML = '';
-            queriedAnnotations.innerHTML = '';
-            annotationsBox.style.display = 'none';
+// generateButton.onclick = function(){
+//     var request = new XMLHttpRequest();
+//     request.onreadystatechange = function(e) {
+// 	if(request.readyState === 4) {
+//             result.className = '';
+// 	    results.value = '';
+//             resultsPanel.style.display = "none";
+//             annotations.innerHTML = '';
+//             queriedAnnotations.innerHTML = '';
+//             annotationsBox.style.display = 'none';
 
-	    if(request.status === 200) { 
-		console.log('200');
-                jr = JSON.parse(e.target.responseText);
-                generateMessage.style.display = "inline";
-                generateMessage.innerHTML = 'Model generated.';
-                previewLink.style.display="inline";
-	    } else {
-                previewLink.style.display="none";
-                generateMessage.innerHTML = 'Error generating model.';
-	    } 
-	}
-    }
-    request.open("POST", "/generator/generate", true);
-    request.send("&readconstraint=" + escape(readConstraint.value)
-                 + "&writeconstraint=" + escape((readwrite.checked ? readConstraint.value : writeConstraint.value))
-                 + "&fprops=" + fprops.value
-                 + "&session-id=" + sessionID.value
-                 + "&authorization-insert=" + authorizationInsert.value);
-};
+// 	    if(request.status === 200) { 
+// 		console.log('200');
+//                 jr = JSON.parse(e.target.responseText);
+//                 generateMessage.style.display = "inline";
+//                 generateMessage.innerHTML = 'Model generated.';
+//                 previewLink.style.display="inline";
+// 	    } else {
+//                 previewLink.style.display="none";
+//                 generateMessage.innerHTML = 'Error generating model.';
+// 	    } 
+// 	}
+//     }
+//     request.open("POST", "/generator/generate", true);
+//     request.send("&readconstraint=" + escape(readConstraint.value)
+//                  + "&writeconstraint=" + escape((readwrite.checked ? readConstraint.value : writeConstraint.value))
+//                  + "&fprops=" + fprops.value
+//                  + "&session-id=" + sessionID.value
+//                  + "&authorization-insert=" + authorizationInsert.value);
+// };
 
 var observe;
 if (window.attachEvent) {
