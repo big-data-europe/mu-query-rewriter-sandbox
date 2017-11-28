@@ -15,6 +15,7 @@ var readConstraint = document.getElementById('read-constraint');
 var writeConstraint = document.getElementById('write-constraint');
 var readwrite = document.getElementById('read-write');
 var fprops = document.getElementById('fprops');
+var qprops = document.getElementById('qprops');
 var queryFprops = document.getElementById('query-fprops');
 var uvs = document.getElementById('uvs');
 var resultPanelBox = document.querySelector('.panel-box');
@@ -145,6 +146,7 @@ rewriteButton.onclick = function(){
                      + "&readconstraint=" + escape(readConstraint.value)
                      + "&writeconstraint=" + escape((readwrite.checked ? readConstraint.value : writeConstraint.value))
                      + "&fprops=" + escape(fprops.value)
+                     + "&qprops=" + escape(qprops.value)
                      + "&query-fprops=" + escape(queryFprops.checked)
                      + "&uvs=" + escape(uvs.value)
                      //+ "&session-id=" + escape(sessionID.value)
@@ -192,6 +194,7 @@ applyButton.onclick = function(){
     request.send("&readconstraint=" + escape(readConstraint.value)
                  + "&writeconstraint=" + escape((readwrite.checked ? readConstraint.value : writeConstraint.value))
                  + "&fprops=" + escape(fprops.value)
+                 + "&qprops=" + escape(qprops.value)
                  + "&query-fprops=" + escape(queryFprops.checked)
                  + "&uvs=" + escape(uvs.value)
                  //+ "&session-id=" + sessionID.value
@@ -227,6 +230,7 @@ generateButton.onclick = function(){
                  request.send("&readconstraint=" + escape(readConstraint.value)
                               + "&writeconstraint=" + escape((readwrite.checked ? readConstraint.value : writeConstraint.value))
                               + "&fprops=" + fprops.value
+                              + "&qprops=" + escape(qprops.value)
                               + "&query-fprops=" + escape(queryFprops.checked)
                               + "&uvs=" + escape(uvs.value)
                              );
@@ -334,6 +338,12 @@ plugins.onchange = function(e){
                                     fprops.value += fp
                                 });
 
+                                qprops.value = '';
+                                [].forEach.call(jr.queriedProperties, function(qp){
+                                    if(qprops.value != '') qprops.value += ', ';
+                                    qprops.value += qp
+                                });
+
                                 uvs.value = '';
                                 [].forEach.call(jr.uniqueVariables, function(uv){
                                     if(uvs.value != '') uvs.value += ', ';
@@ -370,6 +380,7 @@ var clear = function(){
     writeConstraint.style.background = '#ddd';
     resize(writeConstraint)();
     fprops.value = '';
+    qprops.value = '';
     uvs.value = '';
     savePluginAs.disabled = true;
 }
@@ -404,6 +415,7 @@ var save = function(){
         saveReq.send("readconstraint=" + escape(readConstraint.value)
                      + (readwrite.checked ? "&readwrite=t" : ("&writeconstraint=" + writeConstraint.value))
                      + "&fprops=" + escape(fprops.value)
+                     + "&qprops=" + escape(qprops.value)
                      + "&query-fprops=" + escape(queryFprops.checked)
                      + "&uvs=" + escape(uvs.value));
 };
