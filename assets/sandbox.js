@@ -57,7 +57,11 @@ var withAuth = function(user, cb){
         cb()
     }
     else {
-        var request = Req("POST", "/as/auth", cb, function(){ alert('Error inserting authorization triples') });
+        var request = Req("POST", "/as/auth", cb, function(){ 
+            if( window.confirm('Error inserting authorization triples. Continue?') ){
+                cb();
+            }
+        });
         request.send("user=" + escape(user));
     }
 }
