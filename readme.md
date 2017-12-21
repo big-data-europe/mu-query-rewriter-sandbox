@@ -2,7 +2,7 @@
 
 This repository provides a very simple UI for writing and testing Query Rewriter plugins for use with the [Mu Query Rewriter](https://github.com/big-data-europe/mu-query-rewriter).
 
-The [graph-acl-basics](https://github.com/nathanielrb/graph-acl-basics/) repository provides a full working example for experimentation.
+The [graph-acl-basics](https://github.com/big-data-europe/graph-acl-basics/) repository provides a full working example for experimentation.
 
 ## Example docker-compose file
 
