@@ -37,6 +37,8 @@ a {
     color: white;
     background: #424;
     z-index: 1;
+    position: fixed;
+    height: 32px;
 }
 .menu .title {
     font-family: 'Source Sans Pro';
@@ -53,6 +55,10 @@ a {
     background: #4246;
     z-index: 1;
     color: white;
+    position: fixed;
+    height: 56px;
+    top: 60px;
+    width: 96.6%;
 }
 .toolbar a {
     text-decoration: none;
@@ -71,6 +77,7 @@ a {
 }
 .column {
     float: left;
+    margin-top: 116px;
 }
 .row.main {
 }

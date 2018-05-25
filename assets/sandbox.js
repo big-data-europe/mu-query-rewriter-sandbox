@@ -16,6 +16,8 @@ var writeConstraint = document.getElementById('write-constraint');
 var readwrite = document.getElementById('read-write');
 var fprops = document.getElementById('fprops');
 var qprops = document.getElementById('qprops');
+var trfprops = document.getElementById('trfprops');
+var trqprops = document.getElementById('trqprops');
 var queryFprops = document.getElementById('query-fprops');
 var uvs = document.getElementById('uvs');
 var resultPanelBox = document.querySelector('.panel-box');
@@ -151,6 +153,8 @@ rewriteButton.onclick = function(){
                      + "&writeconstraint=" + escape((readwrite.checked ? readConstraint.value : writeConstraint.value))
                      + "&fprops=" + escape(fprops.value)
                      + "&qprops=" + escape(qprops.value)
+                     + "&trfprops=" + escape(trfprops.value)
+                     + "&trqprops=" + escape(trqprops.value)
                      + "&query-fprops=" + escape(queryFprops.checked)
                      + "&uvs=" + escape(uvs.value)
                      //+ "&session-id=" + escape(sessionID.value)
@@ -199,6 +203,8 @@ applyButton.onclick = function(){
                  + "&writeconstraint=" + escape((readwrite.checked ? readConstraint.value : writeConstraint.value))
                  + "&fprops=" + escape(fprops.value)
                  + "&qprops=" + escape(qprops.value)
+                 + "&trfprops=" + escape(trfprops.value)
+                 + "&trqprops=" + escape(trqprops.value)
                  + "&query-fprops=" + escape(queryFprops.checked)
                  + "&uvs=" + escape(uvs.value)
                  //+ "&session-id=" + sessionID.value
@@ -313,6 +319,18 @@ plugins.onchange = function(e){
                                     qprops.value += qp
                                 });
 
+                                trfprops.value = '';
+                                [].forEach.call(jr.transientFunctionalProperties, function(fp){
+                                    if(trfprops.value != '') trfprops.value += ', ';
+                                    trfprops.value += fp
+                                });
+
+                                trqprops.value = '';
+                                [].forEach.call(jr.transientQueriedProperties, function(qp){
+                                    if(trqprops.value != '') trqprops.value += ', ';
+                                    trqprops.value += qp
+                                });
+
                                 uvs.value = '';
                                 [].forEach.call(jr.uniqueVariables, function(uv){
                                     if(uvs.value != '') uvs.value += ', ';
@@ -350,6 +368,8 @@ var clear = function(){
     resize(writeConstraint)();
     fprops.value = '';
     qprops.value = '';
+    trfprops.value = '';
+    trqprops.value = '';
     uvs.value = '';
     savePluginAs.disabled = true;
 }
@@ -385,6 +405,8 @@ var save = function(){
                      + (readwrite.checked ? "&readwrite=t" : ("&writeconstraint=" + writeConstraint.value))
                      + "&fprops=" + escape(fprops.value)
                      + "&qprops=" + escape(qprops.value)
+                     + "&trfprops=" + escape(trfprops.value)
+                     + "&trqprops=" + escape(trqprops.value)
                      + "&query-fprops=" + escape(queryFprops.checked)
                      + "&uvs=" + escape(uvs.value));
 };
