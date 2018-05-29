@@ -441,3 +441,20 @@ var stretchColumns = function(){
 
 init();
 clear();
+
+// load users
+
+var pluginsReq = Req("GET", "/as/users",
+                            function(jr){
+                                [].forEach.call(jr, function(user){
+                                    var option = document.createElement("option");
+                                    option.value = user.id;
+                                    option.text = user.role + ' / ' + user.name + ' / ' + user.uri + ')';
+                                    authorizationUser.appendChild(option);
+                                });
+                            },
+                            function(){
+                                alert('Error loading users');
+                            });
+pluginsReq.send();
+

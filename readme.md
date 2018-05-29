@@ -4,6 +4,29 @@ This repository provides a very simple UI for writing and testing Query Rewriter
 
 The [graph-acl-basics](https://github.com/big-data-europe/graph-acl-basics/) repository provides a full working example for experimentation.
 
+## Sample Users
+
+Users are fetched from the database with this query, which is run on the mu-query-rewriter backend. 
+
+```
+PREFIX muauth: <http://mu.semte.ch/vocabularies/authorization/>
+PREFIX dct: <http://purl.org/dc/terms/>
+SELECT DISTINCT ?user ?role ?name
+WHERE {
+ { ?user muauth:has-role ?role }
+ UNION
+ { ?user muauth:has-role/dct:title ?role }
+
+ FILTER (isLiteral(?role))
+ 
+ { ?user dct:title ?name }
+ UNION
+ { ?user foaf:name ?name }
+}
+```
+
+To customize it, replace the loading function at the bottom of assets/sandbox.js.
+
 ## Example docker-compose file
 
 ```
