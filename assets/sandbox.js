@@ -448,7 +448,7 @@ var pluginsReq = Req("GET", "/as/users",
                             function(jr){
                                 [].forEach.call(jr, function(user){
                                     var option = document.createElement("option");
-                                    option.value = user.id;
+                                    option.value = user.uri;
                                     option.text = user.role + ' / ' + user.name + ' / ' + user.uri + ')';
                                     authorizationUser.appendChild(option);
                                 });
